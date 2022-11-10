@@ -13,13 +13,21 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
-	
-	private String name;
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	int id;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	private String phone;
+	private String name;
+	
 	private String password;
 	private Double walletMoney;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Products products;
 	public Customer() {
 		super();

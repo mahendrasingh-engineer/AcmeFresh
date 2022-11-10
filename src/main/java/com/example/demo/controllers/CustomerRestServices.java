@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dtos.CuctomerRegDto;
@@ -20,7 +21,7 @@ import com.example.demo.exceptions.CustomerNotFound;
 import com.example.demo.repositories.CustomerDAO;
 import com.example.demo.repositories.SessionDAO;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import net.bytebuddy.utility.RandomString;
 
 @RestController
@@ -31,8 +32,9 @@ public class CustomerRestServices {
 	SessionDAO ssd;
 	
 	@PostMapping(value="/customer/register")
-	String fun(@Valid @RequestBody CuctomerRegDto ddt) throws AlreadyExistException {
+	String fun(@Valid  @RequestBody CuctomerRegDto ddt) throws AlreadyExistException {
 		Customer c=null;
+		
 		try {
 			 c=cuDao.findByPhone(ddt.phone);
 		} catch (Exception e) {
@@ -42,7 +44,9 @@ public class CustomerRestServices {
 		if(c!=null) {
 			throw new AlreadyExistException();
 		}
-		cuDao.save(new Customer(ddt.name, ddt.phone, ddt.password, 0.0,new Products()));
+		c=new Customer(ddt.name, ddt.phone, ddt.password, 0.0,new Products());
+		c.setPhone(ddt.phone);
+		cuDao.save(c);
 		return "done";
 	}
 	
@@ -60,7 +64,12 @@ public class CustomerRestServices {
 		}
 		
 		if(c.getPassword().equals(ddt.password)) {
-			ssd.save(new Session(ddt.phone,ddt.phone+RandomStringUtils.random(10)));
+			try {
+				ssd.save(new Session(ddt.phone,ddt.phone+RandomStringUtils.random(10)));
+			} catch (Exception e) {
+				return "errorr";
+			}
+			
 		}
 		
 		

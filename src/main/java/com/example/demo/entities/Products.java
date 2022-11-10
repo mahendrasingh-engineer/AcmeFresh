@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,22 +23,15 @@ public class Products {
 	private List<HydroponicProduct> hydroponicProducts;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<AgricultureProduct> purchased;
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<AgricultureProduct> onsell;
 	
 	
-	public Products(List<FarmSetupService> setup, List<AutomaticFarmService> auto,
-			List<HydroponicProduct> hydroponicProducts, List<AgricultureProduct> purchased,
-			List<AgricultureProduct> onsell) {
-		super();
-		this.setup = setup;
-		this.auto = auto;
-		this.hydroponicProducts = hydroponicProducts;
-		this.purchased = purchased;
-		this.onsell = onsell;
-	}
+	
 	public Products() {
 		super();
+		this.auto=new ArrayList<AutomaticFarmService>();
+		this.hydroponicProducts=new ArrayList<HydroponicProduct>();
+		this.setup=new ArrayList<FarmSetupService>();
+		this.purchased=new ArrayList<AgricultureProduct>();
 	}
 	public List<FarmSetupService> getSetup() {
 		return setup;
@@ -62,12 +56,6 @@ public class Products {
 	}
 	public void setPurchased(List<AgricultureProduct> purchased) {
 		this.purchased = purchased;
-	}
-	public List<AgricultureProduct> getOnsell() {
-		return onsell;
-	}
-	public void setOnsell(List<AgricultureProduct> onsell) {
-		this.onsell = onsell;
 	}
 	
 }
