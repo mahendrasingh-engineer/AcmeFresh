@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dtos.CuctomerRegDto;
 import com.example.demo.entities.Customer;
@@ -22,7 +23,7 @@ import com.example.demo.repositories.SessionDAO;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import net.bytebuddy.utility.RandomString;
 
-@Controller
+@RestController
 public class CustomerRestServices {
 	@Autowired
 	CustomerDAO cuDao;
