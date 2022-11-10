@@ -9,7 +9,7 @@ public class GlobalExceptionHandler {
 	String fun1() {
 		return "this phone is registereg already";
 	}
-	@ExceptionHandler(AlreadyExistException.class)
+	@ExceptionHandler(CustomerNotFound.class)
 	String fun2() {
 		return "this phone is not  registered please regiser first";
 	}

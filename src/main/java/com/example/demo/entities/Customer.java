@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 public class Customer {
 	
 	private String name;
+	@Id
 	private String phone;
 	private String password;
 	private Double walletMoney;
