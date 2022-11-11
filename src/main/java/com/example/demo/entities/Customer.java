@@ -66,10 +66,10 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Double getWalletMoney() {
+	public synchronized Double getWalletMoney() {
 		return walletMoney;
 	}
-	public void setWalletMoney(Double walletMoney) {
+	public synchronized void setWalletMoney(Double walletMoney) {
 		this.walletMoney = walletMoney;
 	}
 	public Products getProducts() {
