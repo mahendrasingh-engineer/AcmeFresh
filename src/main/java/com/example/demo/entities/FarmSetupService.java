@@ -13,15 +13,17 @@ public class FarmSetupService {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private LocalDateTime dateTime;
+	
 	private boolean isDelevered;
+	private int value=1045323;
 	public FarmSetupService() {
 		super();
 	}
-	public FarmSetupService(Integer id, LocalDateTime dateTime, boolean isDelevered) {
+	public FarmSetupService(Integer id, LocalDateTime dateTime) {
 		super();
 		this.id = id;
 		this.dateTime = dateTime;
-		this.isDelevered = isDelevered;
+		this.isDelevered = false;
 	}
 	public Integer getId() {
 		return id;

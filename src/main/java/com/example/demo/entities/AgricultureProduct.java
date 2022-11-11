@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 public class AgricultureProduct {
 	public static List<AgricultureProduct> availableProducts=new ArrayList<>();
 	static {
+		availableProducts.add(new AgricultureProduct(0, "Cassava", 50.00, "1 Kilogram"));
 		availableProducts.add(new AgricultureProduct(1, "Cassava", 50.00, "1 Kilogram"));
 		availableProducts.add(new AgricultureProduct(2, "maize", 55.00, "1 Kilogram"));
 		availableProducts.add(new AgricultureProduct(3, "plantains", 450.00, "1 Kilogram"));

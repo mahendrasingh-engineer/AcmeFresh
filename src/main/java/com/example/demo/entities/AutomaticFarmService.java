@@ -10,17 +10,18 @@ import javax.persistence.Id;
 @Entity
 public class AutomaticFarmService {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id=1;
 	private LocalDateTime dateTime;
 	private boolean isDelevered;
 	public AutomaticFarmService() {
 		super();
 	}
-	public AutomaticFarmService(Integer id, LocalDateTime dateTime, boolean isDelevered) {
+	public AutomaticFarmService(Integer id, LocalDateTime dateTime) {
 		super();
 		this.id = id;
 		this.dateTime = dateTime;
-		this.isDelevered = isDelevered;
+		this.isDelevered = false;
 	}
 	public Integer getId() {
 		return id;

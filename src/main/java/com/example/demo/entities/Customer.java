@@ -30,10 +30,10 @@ public class Customer {
 	public void setLogTime(LocalDateTime logTime) {
 		this.logTime = logTime;
 	}
-	public String getKey() {
+	public String getUuid() {
 		return uuid;
 	}
-	public void setKey(String key) {
+	public void setUuid(String key) {
 		this.uuid = key;
 	}
 	public Customer() {

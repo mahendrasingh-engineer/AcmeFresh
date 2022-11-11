@@ -34,41 +34,35 @@ public class CustomerRestServices {
 	String fun(@Valid  @RequestBody CuctomerRegDto ddt) throws AlreadyExistException {
 		Customer c=null;
 		Optional<Customer> oc;
-		try {
-			 c=cuDao.findByPhone(ddt.phone);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		oc=cuDao.findByPhone(ddt.phone);
 		
-		if(c!=null) {
+		if(oc.isPresent()) {
 			throw new AlreadyExistException();
 		}
 		c=new Customer(ddt.name, ddt.phone, ddt.password, 0.0,new Products());
 		c.setPhone(ddt.phone);
 		cuDao.save(c);
-		return "done";
+		return "registration done succesfully";
 	}
 	
 	@PostMapping(value="/customer/login")
 	String fun2(@Valid @RequestBody CuctomerRegDto ddt) {
 		Customer c=null;
-		try {
-			 c=cuDao.findByPhone(ddt.phone);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		Optional<Customer> oc;
+		oc=cuDao.findByPhone(ddt.phone);
 		
-		if(c==null) {
+		if(oc.isEmpty()) {
 			throw new CustomerNotFound();
 		}
 		
+		
 		if(c.getPassword().equals(ddt.password)) {
 			String key=RandomString.make(10);
-			c.setKey(key);
+			c.setUuid(key);
 			cuDao.save(c);
 			return key;
 		}
-		return "";
+		return "invalid password";
 	}
 	
 	
