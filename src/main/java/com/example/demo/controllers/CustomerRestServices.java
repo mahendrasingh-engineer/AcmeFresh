@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -15,26 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dtos.CuctomerRegDto;
 import com.example.demo.entities.Customer;
 import com.example.demo.entities.Products;
-import com.example.demo.entities.Session;
 import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.exceptions.CustomerNotFound;
 import com.example.demo.repositories.CustomerDAO;
-import com.example.demo.repositories.SessionDAO;
-
 
 import net.bytebuddy.utility.RandomString;
+
+
+
 
 @RestController
 public class CustomerRestServices {
 	@Autowired
 	CustomerDAO cuDao;
-	@Autowired
-	SessionDAO ssd;
-	
 	@PostMapping(value="/customer/register")
 	String fun(@Valid  @RequestBody CuctomerRegDto ddt) throws AlreadyExistException {
 		Customer c=null;
-		
+		Optional<Customer> oc;
 		try {
 			 c=cuDao.findByPhone(ddt.phone);
 		} catch (Exception e) {
@@ -64,16 +63,12 @@ public class CustomerRestServices {
 		}
 		
 		if(c.getPassword().equals(ddt.password)) {
-			try {
-				ssd.save(new Session(ddt.phone,ddt.phone+RandomStringUtils.random(10)));
-			} catch (Exception e) {
-				return "errorr";
-			}
-			
+			String key=RandomString.make(10);
+			c.setKey(key);
+			cuDao.save(c);
+			return key;
 		}
-		
-		
-		return "done";
+		return "";
 	}
 	
 	

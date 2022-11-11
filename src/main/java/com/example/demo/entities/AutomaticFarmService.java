@@ -10,8 +10,7 @@ import javax.persistence.Id;
 @Entity
 public class AutomaticFarmService {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	private Integer id=1;
 	private LocalDateTime dateTime;
 	private boolean isDelevered;
 	public AutomaticFarmService() {

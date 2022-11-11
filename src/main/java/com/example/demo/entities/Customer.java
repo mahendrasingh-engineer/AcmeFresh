@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +15,6 @@ import javax.persistence.OneToOne;
 @Entity
 public class Customer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	private String phone;
 	private String name;
 	
@@ -29,6 +22,20 @@ public class Customer {
 	private Double walletMoney;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Products products;
+	private String uuid=null;
+	private LocalDateTime logTime;
+	public LocalDateTime getLogTime() {
+		return logTime;
+	}
+	public void setLogTime(LocalDateTime logTime) {
+		this.logTime = logTime;
+	}
+	public String getKey() {
+		return uuid;
+	}
+	public void setKey(String key) {
+		this.uuid = key;
+	}
 	public Customer() {
 		super();
 	}

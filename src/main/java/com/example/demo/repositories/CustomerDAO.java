@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entities.Customer;
 
-public interface CustomerDAO extends JpaRepository<Customer, Integer>{
+public interface CustomerDAO extends JpaRepository<Customer, String>{
 
 	Customer findByPhone(String phone);
 	
