@@ -35,7 +35,7 @@ public class CustomerService {
 		LocalTime lt2=t2.toLocalTime();
 		 
 		Period per=Period.between(t2.toLocalDate(), t);
-		Double hr=(double) (lt2.getHour()-lt1.getHour());
+		Double hr=(double) (lt1.getHour()-lt2.getHour());
 		System.out.println(per.getDays());
 		per.getDays();
 		if(per.getYears()==0&&per.getMonths()==0&&per.getDays()==0&&hr<4) {
@@ -43,6 +43,22 @@ public class CustomerService {
 		}else {
 			throw new InvalidKeyException("session is over login again");
 		}
+	}
+	public boolean timeCheck(Customer c) {
+		if(c.getUuid()==null) {
+			return false;
+		}
+		LocalDate t=LocalDate.now();
+		LocalTime lt1=LocalTime.now();
+		LocalDateTime t2=c.getLogTime();
+		LocalTime lt2=t2.toLocalTime();
+		 
+		Period per=Period.between(t2.toLocalDate(), t);
+		Double hr=(double) (lt1.getHour()-lt2.getHour());
+		System.out.println(per.getDays());
+		per.getDays();
+		return (per.getYears()==0&&per.getMonths()==0&&per.getDays()==0&&hr<4);
+			
 	}
 	
 }

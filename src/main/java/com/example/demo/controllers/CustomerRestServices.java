@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,6 +65,9 @@ public class CustomerRestServices {
 		if(oc.isEmpty()) {
 			throw new InvalidKeyException("this mobile is number not registered with ay customer");
 		}
+		if(cse.timeCheck(c)) {
+			return c.getUuid();
+		}
 		c=oc.get();
 		String key;
 		if(!c.getPassword().equals(ddt.password)) {
@@ -99,6 +103,14 @@ public class CustomerRestServices {
 		Customer c=cse.validate(key);
 		cuDao.delete(c);
 		return "deleted successfully";
+	}
+	
+	@PutMapping(value="/customer/password/update")
+	String fun12(@RequestParam("key") String uuid,@RequestParam("new password") String pass) {
+		Customer c=cse.validate(uuid);
+		c.setPassword(pass);
+		c.setUuid(null);
+		return "password changed";
 	}
 	
 }

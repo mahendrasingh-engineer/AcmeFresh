@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 public class FarmSetupService {
+	public static int valueState=1045323;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
