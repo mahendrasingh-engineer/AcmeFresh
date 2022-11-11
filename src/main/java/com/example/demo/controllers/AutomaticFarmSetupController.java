@@ -20,7 +20,7 @@ public class AutomaticFarmSetupController {
 	CustomerDAO cud;
 	
 	@PostMapping(value="/buy/AutomaticFarmSetup_product")
-	String fun2(@RequestParam("key") String uuid,@RequestParam("agriculture product id") int id){
+	String fun2(@RequestParam("key") String uuid){
 		Customer c=cus.validate(uuid);
 		if(c.getWalletMoney()>=AutomaticFarmService.valueState) {
 			c.getProducts().getAuto().add(new AutomaticFarmService());

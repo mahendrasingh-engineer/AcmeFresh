@@ -114,7 +114,9 @@ public class CustomerRestServices {
 	String fun12(@RequestParam("key") String uuid,@RequestParam("new password") String pass) {
 		Customer c=cse.validate(uuid);
 		c.setPassword(pass);
+		
 		c.setUuid(null);
+		cuDao.save(c);
 		return "password changed";
 	}
 	

@@ -26,7 +26,7 @@ public class FarmSetupController {
 	}
 	
 	@PostMapping(value="/buy/farmesetup")
-	String fun2(@RequestParam("key") String uuid,@RequestParam("agriculture product id") int id){
+	String fun2(@RequestParam("key") String uuid){
 		Customer c=cus.validate(uuid);
 		if(c.getWalletMoney()>=FarmSetupService.valueState) {
 			c.getProducts().getSetup().add(new FarmSetupService());
