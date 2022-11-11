@@ -98,6 +98,7 @@ public class CustomerRestServices {
 		Customer c=cse.validate(key);
 		if(money>0) {
 			c.setWalletMoney(money+c.getWalletMoney());
+			cuDao.save(c);
 		}
 		return "updated ballance in wallet ="+c.getWalletMoney();
 	}
