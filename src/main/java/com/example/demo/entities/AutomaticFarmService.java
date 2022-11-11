@@ -9,13 +9,14 @@ import javax.persistence.Id;
 
 @Entity
 public class AutomaticFarmService {
-	public static int valueState=10453230;
+	public static int valueState=653230;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id=1;
-	private LocalDateTime dateTime;
-	private boolean isDelevered;
+	private LocalDateTime dateTime=LocalDateTime.now();
+	private boolean isDelevered=false;
+	int price=653230;
 	public AutomaticFarmService() {
 		super();
 	}

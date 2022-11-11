@@ -9,16 +9,31 @@ import javax.persistence.Id;
 
 @Entity
 public class FarmSetupService {
-	public static int valueState=1045323;
+	public static int valueState=105323;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private LocalDateTime dateTime;
-	
+	int price=105323;
 	private boolean isDelevered;
 	private int value=1045323;
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getValue() {
+		return value;
+	}
+	public void setValue(int value) {
+		this.value = value;
+	}
 	public FarmSetupService() {
 		super();
+		this.id = 0;
+		this.dateTime = LocalDateTime.now();
+		this.isDelevered = false;
 	}
 	public FarmSetupService(Integer id, LocalDateTime dateTime) {
 		super();
