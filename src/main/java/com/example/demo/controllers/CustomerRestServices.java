@@ -113,4 +113,9 @@ public class CustomerRestServices {
 		return "password changed";
 	}
 	
+	@GetMapping(value="/purhcased/products")
+	Products fun21(String key) {
+		Customer c=cse.validate(key);
+		return c.getProducts();
+	}
 }
