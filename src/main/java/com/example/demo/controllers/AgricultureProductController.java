@@ -24,7 +24,7 @@ public class AgricultureProductController {
 	@GetMapping("/agriculture_products/all")
 	List<AgricultureProduct> fun1() {
 		return AgricultureProduct.getAvailableProducts();
-	}
+	}  //dddf
 	
 	
 	@PostMapping(value="/buy/agriculture_product")
