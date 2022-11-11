@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
@@ -65,7 +66,9 @@ public class CustomerRestServices {
 		if(oc.isEmpty()) {
 			throw new InvalidKeyException("this mobile is number not registered with ay customer");
 		}
+		c=oc.get();
 		if(cse.timeCheck(c)) {
+			c.setLogTime(LocalDateTime.now());
 			return c.getUuid();
 		}
 		c=oc.get();
@@ -75,6 +78,7 @@ public class CustomerRestServices {
 		}
 		key=RandomString.make(10)+c.getPhone();
 		c.setUuid(key);
+		c.setLogTime(LocalDateTime.now());
 		cuDao.save(c);
 		return key;
 	}
